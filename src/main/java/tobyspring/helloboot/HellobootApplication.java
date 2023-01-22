@@ -18,6 +18,7 @@ public class HellobootApplication {
 
 		WebServer webServer = serverFactory.getWebServer(servletContext -> {
 			servletContext.addServlet("frontcontroller", new HttpServlet() {
+				HelloController helloController = new HelloController();
 				@Override
 				protected void service(HttpServletRequest req, HttpServletResponse resp)
 						throws ServletException, IOException {
@@ -26,9 +27,11 @@ public class HellobootApplication {
 					if (req.getRequestURI().equals("/hello") && req.getMethod().equals(HttpMethod.GET.name())) {
 						String name = req.getParameter("name");
 
+						String ret = helloController.hello(name);
+
 						resp.setStatus(HttpStatus.OK.value());
 						resp.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-						resp.getWriter().print("Hello " + name);
+						resp.getWriter().print(ret);
 					} else if (req.getRequestURI().equals("/user")) {
 						//
 					} else {
