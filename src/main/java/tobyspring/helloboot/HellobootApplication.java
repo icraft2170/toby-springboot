@@ -20,6 +20,7 @@ public class HellobootApplication {
 		TomcatServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
 		GenericApplicationContext applicationContext = new GenericApplicationContext();
 		applicationContext.registerBean(HelloController.class);
+		applicationContext.registerBean(SimpleHelloService.class);
 		applicationContext.refresh();
 
 		WebServer webServer = serverFactory.getWebServer(servletContext -> {
