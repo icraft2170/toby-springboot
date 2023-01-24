@@ -24,22 +24,8 @@ public class HellobootApplication {
 	}
 
 	public static void main(String[] args) {
-		AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext() {
-			@Override
-			protected void onRefresh() {
-				super.onRefresh();
-				ServletWebServerFactory serverFactory = this.getBean(ServletWebServerFactory.class);
-				DispatcherServlet dispatcherServlet = this.getBean(DispatcherServlet.class);
-				// ApplicationContextAware 인터페이스를 구현해 setApplicationContext 가 자동 실행되도록 하였음.
-
-				WebServer webServer = serverFactory.getWebServer(servletContext -> {
-					servletContext.addServlet("dispatcherServlet", dispatcherServlet)
-							.addMapping("/*");
-				});
-				webServer.start();
-			}
-		};
-		applicationContext.register(HellobootApplication.class);
-		applicationContext.refresh();
+		MySpringApplication.run(HellobootApplication.class, args);
 	}
+
+
 }
