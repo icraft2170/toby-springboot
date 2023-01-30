@@ -7,13 +7,14 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import tobyspring.config.Config;
+import tobyspring.config.DispatcherServletConfig;
+import tobyspring.config.TomcatWebServerConfig;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Configuration
 @ComponentScan
-@Import(Config.class)
+@Import(value = {DispatcherServletConfig.class, TomcatWebServerConfig.class})
 public @interface MySpringBootAnnotation {
 
 }
