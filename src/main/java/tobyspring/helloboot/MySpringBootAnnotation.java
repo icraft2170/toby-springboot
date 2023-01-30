@@ -6,15 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import tobyspring.config.DispatcherServletConfig;
-import tobyspring.config.TomcatWebServerConfig;
+import tobyspring.config.EnableMyAutoConfiguration;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Configuration
 @ComponentScan
-@Import(value = {DispatcherServletConfig.class, TomcatWebServerConfig.class})
+@EnableMyAutoConfiguration
 public @interface MySpringBootAnnotation {
 
 }
